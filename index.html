@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Học Trực Tuyến</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .website-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .website-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .website-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .website-card h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .website-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .visit-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .visit-btn:hover {
+            background: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Học Trực Tuyến</h1>
+        
+        <div class="website-list">
+            <div class="website-card" data-website="alokiddy">
+                <div class="website-logo" style="background-image: url('https://v.etsystatic.com/video/upload/q_auto/Black_Hoodie_1_vqlh3q.jpg')"></div>
+                <h2>Alokiddy</h2>
+                <p>Học tiếng Anh trực tuyến cho trẻ em từ 3-14 tuổi với chương trình chuẩn quốc tế</p>
+                <a href="https://alokiddy.com.vn/" class="visit-btn" target="_blank">Truy cập</a>
+            </div>
+
+            <div class="website-card" data-website="ioe">
+                <div class="website-logo" style="background-image: url('https://v.etsystatic.com/video/upload/q_auto/Black_Hoodie_1_vqlh3q.jpg')"></div>
+                <h2>IOE</h2>
+                <p>Thi Olympic Tiếng Anh trực tuyến dành cho học sinh từ lớp 3 đến lớp 12</p>
+                <a href="https://ioe.vn/" class="visit-btn" target="_blank">Truy cập</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 Học Trực Tuyến. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Thêm hiệu ứng khi scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.website-card');
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if(cardTop < triggerBottom) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Thêm hiệu ứng khi di chuột qua thẻ
+        document.querySelectorAll('.website-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Theo dõi sự kiện click
+        document.querySelectorAll('.visit-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const websiteName = this.closest('.website-card').dataset.website;
+                console.log(`Đã click vào website: ${websiteName}`);
+                // Có thể thêm code analytics ở đây
+            });
+        });
+    </script>
+</body>
+</html>
